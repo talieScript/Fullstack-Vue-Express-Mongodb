@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nomdemon sever/index.js",
+    "dev": "nodemon sever/index.js",
     "start": "node sever/index.js"
   },
   "author": "Taliesin",
