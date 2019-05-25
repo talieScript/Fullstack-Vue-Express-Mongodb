@@ -3,6 +3,8 @@
     <h1>Latest Posts</h1>
     <hr>
     <div class="rete-post">
+      <label for="name" class="">Name</label>
+      <input type="text" id="name" v-model="name" placeholder="Whats your name?">
       <label for="create-post" class="">Say Somthing...</label>
       <input type="text" id="create-post" v-model="text" placeholder="Create a post">
       <button v-on:click="createPost">Post!</button>
@@ -16,8 +18,10 @@
         v-bind:key="post._id"
         v-on:dblclick="deletePost(post._id)"
         >
-          {{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}}
+          {{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}
+              ${post.createdAt.getHours()}:${post.createdAt.getMinutes()}`}}
           <p class="text">{{ post.text }}</p>
+          <p class="text">{{ post.name }}</p>
         </div>
     </div>
   </div>
@@ -32,7 +36,7 @@ export default {
     return {
       posts: [],
       error: '',
-      text: ''
+      text: '',
     }
   },
   async created() {
@@ -44,7 +48,7 @@ export default {
   },
   methods: {
     async createPost() {
-      await PostService.insertPost(this.text);
+      await PostService.insertPost(this.text, this.name);
       this.posts = await PostService.getPost();
     },
     async deletePost(id) {
