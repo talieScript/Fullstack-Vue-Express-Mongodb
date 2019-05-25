@@ -7,6 +7,16 @@
       <input type="text" id="name" v-model="name" placeholder="Whats your name?">
       <label for="create-post" class="">Say Somthing...</label>
       <input type="text" id="create-post" v-model="text" placeholder="Create a post">
+      
+      <select v-model="icon">
+        <option disabled select value="null">Pick one!</option>
+        <option value="carrot">Carrot</option>
+        <option value="pawn">Pawn</option>
+        <option value="child">Child</option>
+        <option value="circle">Circle</option>
+        <option value="cloud">Cloud</option>
+        <option value="comment">Comment</option>
+      </select>
       <button v-on:click="createPost">Post!</button>
     </div>
     <p class="error" v-if="error">{{ error }}</p>
@@ -21,7 +31,13 @@
           {{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}
               ${post.createdAt.getHours()}:${post.createdAt.getMinutes()}`}}
           <p class="text">{{ post.text }}</p>
-          <p class="text">{{ post.name }}</p>
+          <p class="text">{{ post.name }}</p>          
+          <i v-if="post.icon === 'carrot'" class="fas fa-carrot"></i>
+          <i v-if="post.icon === 'pawn'" class="fas fa-chess-pawn"></i>
+          <i v-if="post.icon === 'child'" class="fas fa-child"></i>
+          <i v-if="post.icon === 'circle'" class="fas fa-circle"></i>
+          <i v-if="post.icon === 'cloud'" class="fas fa-cloud"></i>
+          <i v-if="post.icon === 'comment'" class="fas fa-comment"></i>
         </div>
     </div>
   </div>
@@ -37,6 +53,7 @@ export default {
       posts: [],
       error: '',
       text: '',
+      icon: null
     }
   },
   async created() {
@@ -48,7 +65,7 @@ export default {
   },
   methods: {
     async createPost() {
-      await PostService.insertPost(this.text, this.name);
+      await PostService.insertPost(this.text, this.name, this.icon);
       this.posts = await PostService.getPost();
     },
     async deletePost(id) {
