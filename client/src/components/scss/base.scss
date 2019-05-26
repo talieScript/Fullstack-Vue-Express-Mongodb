@@ -1,0 +1,24 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+html{
+	font-size: 62.5%; /* 62.5% * 16px = 10 px */
+}
+body { 
+    font-family: 'Mandali', sans-serif;
+    color: rgb(232, 235, 240);
+    font-weight: 400;
+    line-height: 1.7;
+    padding: 3rem;
+    background: #56CCF2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+.container {
+    margin: 3rem;
+}

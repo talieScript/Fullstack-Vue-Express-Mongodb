@@ -1,0 +1,99 @@
+.form {
+    margin: 0 auto;;
+    width: 50%; 
+    position: relative;
+    margin-bottom: 5rem;
+    max-width: 75rem;
+}
+@media only screen and (max-width: 700px) { 
+    .form { 
+        width: 100%;
+    }
+};
+.form__title {
+    font-size: 2.5rem;
+    top: -6rem;
+    position: absolute;
+}
+.form-section{
+    position: relative;
+    display: inline-block;
+}
+.form-top {
+    margin-bottom: 3rem;
+}
+.name {
+    width: 60%;
+}
+.name__label {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    font-size: 2rem;
+}
+.name__input {
+    height: 3.2rem;
+    width: 90%;
+    border: none;
+    border-radius: .3rem;
+    background-color: #ecf0f1;
+    box-shadow: 0 1rem 2rem rgba($color-black, .3);
+
+}
+.icon {
+    width: 39%;
+}
+.icon__input {
+    padding: .7rem;
+    border: none;
+    border-radius: .3rem;
+    width: 100%;
+    box-shadow: 0 1rem 2rem rgba($color-black, .3);
+}
+.icon__label {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    font-size: 2rem;
+}
+
+.text{
+    width:100%;
+}
+.text__input {
+    width: 101%;
+    height: 5rem;
+}
+.text__label {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    font-size: 2rem;
+}
+
+button {
+    padding: 0.5rem 2rem;
+    font-size: 1.5rem;
+    color: white;
+    background-color: #073666;
+    border: none;
+    border-radius: .7rem;
+    transition: all .2s;
+    margin-top: .3rem;
+}
+
+button:hover{
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba(black, .3);
+    &::after {
+        transform: scaleX(1.5) scaleY(1.8);
+        opacity: 0;
+    }
+}
+
+button:active {
+    transform: translateY(-.1rem);
+}
+
+
+

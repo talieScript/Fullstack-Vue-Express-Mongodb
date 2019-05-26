@@ -1,45 +1,64 @@
 <template>
-  <div class="container">
-    <h1>Latest Posts</h1>
-    <hr>
-    <div class="rete-post">
-      <label for="name" class="">Name</label>
-      <input type="text" id="name" v-model="name" placeholder="Whats your name?">
-      <label for="create-post" class="">Say Somthing...</label>
-      <input type="text" id="create-post" v-model="text" placeholder="Create a post">
-      
-      <select v-model="icon">
-        <option disabled select value="null">Pick one!</option>
-        <option value="carrot">Carrot</option>
-        <option value="pawn">Pawn</option>
-        <option value="child">Child</option>
-        <option value="circle">Circle</option>
-        <option value="cloud">Cloud</option>
-        <option value="comment">Comment</option>
-      </select>
-      <button v-on:click="createPost">Post!</button>
-    </div>
-    <p class="error" v-if="error">{{ error }}</p>
-    <div class="posts-container">
-      <div class="post" 
-        v-for="(post,index) in posts"
-        v-bind:item="post"
-        v-bind:index="index"
-        v-bind:key="post._id"
-        v-on:dblclick="deletePost(post._id)"
-        >
-          {{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}
-              ${post.createdAt.getHours()}:${post.createdAt.getMinutes()}`}}
-          <p class="text">{{ post.text }}</p>
-          <p class="text">{{ post.name }}</p>          
-          <i v-if="post.icon === 'carrot'" class="fas fa-carrot"></i>
-          <i v-if="post.icon === 'pawn'" class="fas fa-chess-pawn"></i>
-          <i v-if="post.icon === 'child'" class="fas fa-child"></i>
-          <i v-if="post.icon === 'circle'" class="fas fa-circle"></i>
-          <i v-if="post.icon === 'cloud'" class="fas fa-cloud"></i>
-          <i v-if="post.icon === 'comment'" class="fas fa-comment"></i>
+  <div>
+    <header class="title">
+      <h1>Taliesin's Guest Book</h1>
+      <hr>
+    </header>
+    <section id="form" class="form">
+      <h3 class="form__title">Make a post:</h3>
+      <div class="form-top">
+        <div class="name form-section">
+          <input class="name__input" type="text" id="name" v-model="name" placeholder="Whats your name?" maxlength="20">
+          <label for="name" class="name__label">Name</label>
         </div>
-    </div>
+        
+        <div class="icon form-section">
+          <select class="icon__input" v-model="icon" id="icon-select">
+            <option disabled select value="null">Pick one!</option>
+            <option value="carrot">Carrot</option>
+            <option value="pawn">Pawn</option>
+            <option value="child">Child</option>
+            <option value="circle">Circle</option>
+            <option value="cloud">Cloud</option>
+            <option value="comment">Comment</option>
+          </select>
+          <label for="icon-select" class="icon__label">Icon</label>
+        </div>
+      </div>
+
+      <div class="form-bottom">
+        <div class="text form-section">
+          <textarea type="textarea" id="create-post" v-model="text" placeholder="Create a post" class="text__input"></textarea>
+          <label for="create-post" class="text__label">Say Somthing...</label>
+        </div>  
+        <button v-on:click="createPost">Post!</button>
+      </div>
+    </section>
+
+    <section id="posts">
+      <p class="error" v-if="error">{{ error }}</p>
+      <div class="posts-container row">
+        <div class="post col-1-of-4" 
+          v-for="(post,index) in posts"
+          v-bind:item="post"
+          v-bind:index="index"
+          v-bind:key="post._id"
+          v-on:dblclick="deletePost(post._id)"
+          >
+            <i v-if="post.icon === 'carrot'" class="post__icon fas fa-carrot"></i>
+            <i v-if="post.icon === 'pawn'" class="post__icon fas fa-chess-pawn"></i>
+            <i v-if="post.icon === 'child'" class="post__icon fas fa-child"></i>
+            <i v-if="post.icon === 'circle'" class="post__icon fas fa-circle"></i>
+            <i v-if="post.icon === 'cloud'" class="post__icon fas fa-cloud"></i>
+            <i v-if="post.icon === 'comment'" class="post__icon fas fa-comment"></i>
+            <p class="text">{{ post.text }}</p>
+            <p class="text">{{ post.name }}</p>          
+            {{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}
+                ${post.createdAt.getHours()}:${post.createdAt.getMinutes()}`}}
+          </div>
+      </div>
+    </section>
+    
   </div>
 </template>
 
@@ -76,41 +95,8 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-div.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+<style lang="scss" scoped>
 
-p.error {
-  border: 1px solid #ff5b5f;
-  background-color: #ffc5c1;
-  padding: 10px;
-  margin-bottom: 15px;
-}
+@import url(scss/main.scss);
 
-div.post {
-  position: relative;
-  border: 1px solid #5bd658;
-  background-color: #bcffb8;
-  padding: 10px 10px 30px 10px;
-  margin-bottom: 15px;
-}
-
-div.created-at{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px 15 px 5px 15px;
-  background-color: darkgreen;
-  color: white;
-  font-size: 13px;
-}
-
-p.text {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 0;
-}
 </style>
